@@ -1,45 +1,45 @@
-name: Build Flet APK
+name: Build APK
 
 on:
   push:
     branches:
-      - main  # أو اسم الفرع الرئيسي لديك إذا كان master
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: Install Flet and Dependencies
-      run: |
-        pip install flet arabic-reshaper python-bidi
-        # أضف هنا أي مكتبات أخرى يحتاجها برنامجك لكي لا يفشل البناء
+      - name: Set up Java (مطلوب لبناء أندرويد)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
-    - name: Setup Java (Required for Android)
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'zulu'
-        java-version: '17'
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
 
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        channel: 'stable'
+      - name: Install dependencies
+        run: |
+          pip install flet
+          pip install -r requirements.txt
 
-    - name: Build APK via Flet
-      run: |
-        flet build apk
+      - name: Build APK via Flet
+        run: |
+          flet build apk
 
-    - name: Upload APK Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: mahfadati-app-release
-        path: build/apk/*.apk
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mahfadati-app-release
+          path: build/apk/*.apk
