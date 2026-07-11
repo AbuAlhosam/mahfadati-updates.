@@ -1,0 +1,26 @@
+[
+  {
+    "name": "حسام",
+    "amount": 1000.0,
+    "kind": "عليك",
+    "currency": "ر.س",
+    "paid": false,
+    "date": "2026-07-03 23:01"
+  },
+  {
+    "name": "حسام",
+    "amount": 900.0,
+    "kind": "لك",
+    "currency": "ر.س",
+    "paid": true,
+    "date": "2026-07-03 23:02"
+  },
+  {
+    "name": "حسام",
+    "amount": 100.0,
+    "kind": "عليك",
+    "currency": "ر.س",
+    "paid": false,
+    "date": "2026-07-03 23:16"
+  }
+]
