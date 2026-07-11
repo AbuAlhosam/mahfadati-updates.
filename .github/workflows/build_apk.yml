@@ -27,12 +27,15 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          flutter-version: '3.41.7'
+
+      - name: Disable Flutter analytics
+        run: flutter config --no-analytics
 
       - name: Install dependencies
         run: |
           pip install flet
-        
+          pip install -r requirements.txt
 
       - name: Build APK via Flet
         run: |
