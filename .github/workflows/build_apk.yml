@@ -39,7 +39,7 @@ jobs:
 
       - name: Build APK via Flet
         run: |
-          yes | flet build apk
+          yes | flet build apk --product "محفظتي" --icon "app_icon.png"
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
